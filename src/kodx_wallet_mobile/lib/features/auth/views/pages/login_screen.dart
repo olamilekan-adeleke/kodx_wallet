@@ -16,7 +16,7 @@ import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen();
+  const LoginScreen({Key? key}) : super(key: key);
 
   static final LoginControllers loginControllers = Get.find<LoginControllers>();
 

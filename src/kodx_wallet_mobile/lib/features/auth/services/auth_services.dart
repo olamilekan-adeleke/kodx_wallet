@@ -97,7 +97,7 @@ class AuthenticationRepo {
     // try {
     //   await _firebaseAuth.signOut();
     //   await localDatabaseController.clear();
-    //   infoLog('user loging out', title: 'log out');
+    //   infoLog('user logging out', title: 'log out');
     // } catch (e, s) {
     //   errorLog(
     //     e.toString(),

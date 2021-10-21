@@ -14,8 +14,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 
-class SignupScreen extends StatelessWidget {
-  const SignupScreen();
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen(Key? key) : super(key: key);
 
   static final RegisterController registerController =
       Get.find<RegisterController>();
@@ -64,19 +64,19 @@ class SignupScreen extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: KodTextField(
-                  hintText: 'Firstname',
-                  textEditingController: registerController.firstnameController,
+                  hintText: 'First Name',
+                  textEditingController: registerController.firstNameController,
                   validator: (String? value) =>
-                      formFieldValidator(value, 'Firstname', 3),
+                      formFieldValidator(value, 'First Name', 3),
                 ),
               ),
               SizedBox(width: sizerSp(3)),
               Expanded(
                 child: KodTextField(
-                  hintText: 'Lastname',
-                  textEditingController: registerController.lastnameController,
+                  hintText: 'Last Name',
+                  textEditingController: registerController.lastNameController,
                   validator: (String? value) =>
-                      formFieldValidator(value, 'Lastname', 3),
+                      formFieldValidator(value, 'Last Name', 3),
                 ),
               ),
             ],

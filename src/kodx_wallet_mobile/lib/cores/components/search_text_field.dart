@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../constants/color.dart';
 import '../utils/custom_sizer_utils.dart';
 
@@ -29,10 +30,10 @@ Widget searchTextField({
         borderRadius: BorderRadius.circular(sizerSp(5.0)),
       ),
       hintText: hint,
-      hintStyle: TextStyle(color: kcGrey400, fontWeight: FontWeight.w600),
+      hintStyle: const TextStyle(color: kcGrey400, fontWeight: FontWeight.w600),
       prefixIcon: Icon(Icons.search, color: kcGrey400, size: sizerSp(14)),
       isDense: true,
-      contentPadding: EdgeInsets.all(8),
+      contentPadding:  EdgeInsets.all(sizerSp(8)),
     ),
     keyboardType: TextInputType.text,
     textInputAction: TextInputAction.search,

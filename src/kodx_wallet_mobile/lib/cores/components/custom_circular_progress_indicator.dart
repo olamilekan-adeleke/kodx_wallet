@@ -15,7 +15,7 @@ Widget loadingIndicator({
     mainAxisAlignment: MainAxisAlignment.center,
     mainAxisSize: MainAxisSize.min,
     children: [
-      SizedBox(width: double.infinity),
+      const SizedBox(width: double.infinity),
       text == null
           ? Container()
           : textWidget(
@@ -58,7 +58,7 @@ Widget loadingMoreWidget({
         SizedBox(
           height: sizerSp(15.0),
           width: sizerSp(15.0),
-          child: CupertinoActivityIndicator(),
+          child: const CupertinoActivityIndicator(),
         ),
         SizedBox(width: sizerSp(5.0)),
         textWidget(

@@ -18,9 +18,9 @@ class RegisterController extends GetxController {
       ControllerState.init.obs;
   static final AuthenticationRepo _authenticationRepo =
       Get.find<AuthenticationRepo>();
-  final TextEditingController firstnameController =
+  final TextEditingController firstNameController =
       TextEditingController(text: '');
-  final TextEditingController lastnameController =
+  final TextEditingController lastNameController =
       TextEditingController(text: '');
   final TextEditingController emailController = TextEditingController(text: '');
   final TextEditingController phoneController = TextEditingController(text: '');
@@ -35,8 +35,8 @@ class RegisterController extends GetxController {
     final UserDetailsModel user = UserDetailsModel(
       uid: '',
       email: emailController.text.trim(),
-      fullName: '${firstnameController.text.trim()}'
-          ' ${lastnameController.text.trim()}',
+      fullName: '${firstNameController.text.trim()}'
+          ' ${lastNameController.text.trim()}',
       phoneNumber: phoneController.text.trim(),
       dateJoined: Timestamp.now(),
       profilePicUrl: null,

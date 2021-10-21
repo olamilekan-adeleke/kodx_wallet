@@ -8,7 +8,7 @@ import '../../../../features/auth/controllers/auth_state_controller.dart';
 import '../../../../features/auth/views/pages/login_screen.dart';
 
 class WrapperScreen extends StatelessWidget {
-  const WrapperScreen();
+  const WrapperScreen({Key? key}) : super(key: key);
 
   static final AuthStateController authStateController =
       Get.find<AuthStateController>();
@@ -21,7 +21,7 @@ class WrapperScreen extends StatelessWidget {
       () {
         if (authStateController.authStateEnum.value == AuthStateEnum.loggedIn &&
             localDatabaseController.hasUserData) {
-          return const Scaffold();
+          return const Scaffold(body: Center(child: Text('home')));
         } else {
           return const LoginScreen();
         }
@@ -29,3 +29,4 @@ class WrapperScreen extends StatelessWidget {
     );
   }
 }
+

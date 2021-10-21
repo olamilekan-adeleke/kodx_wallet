@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:faker/faker.dart';
 // import 'package:firebase_database/firebase_database.dart';
 // import 'package:kod_chat/features/auth/model/user_details_model.dart';
 
@@ -21,7 +20,7 @@ class GenerateRandomUserFaker {
   }
 
   static Future<void> _generateUsers(bool addImage) async {
-    final Faker faker = Faker();
+    // final Faker faker = Faker();
 
     // final UserDetailsModel user = UserDetailsModel(
     //   uid: faker.internet.random.numberOfLength(12),
