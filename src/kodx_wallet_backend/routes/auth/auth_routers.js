@@ -1,6 +1,8 @@
 const authRouter = require("express").Router();
 const validateUserDetails = require("../../controllers/validate_signup_details");
 const checkEmailExist = require("../../controllers/auth/check_email_exist");
+const checkPhoneExist = require("../../controllers/auth/check_phone");
+const checkUsernameExist = require("../../controllers/auth/check_username");
 const hashPassword = require("../../controllers/auth/hash_password");
 const saveUserToDB = require("../../controllers/auth/save_user");
 
@@ -18,8 +20,10 @@ authRouter.post("/signup", async (req, res) => {
     await checkEmailExist(req.body.email);
 
     // check username
-    
+    await checkUsernameExist(req.body.username);
+
     // check phone number
+    await checkPhoneExist(req.body.phone);
 
     // hash password
     password = await hashPassword(req.body.password);
