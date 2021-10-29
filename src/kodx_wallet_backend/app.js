@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(responseTime());
 
 // authentication
-app.use("/", authRoutes);
+app.use("/auth", authRoutes);
 
 // test
 app.get("/home", (req, res) => {
