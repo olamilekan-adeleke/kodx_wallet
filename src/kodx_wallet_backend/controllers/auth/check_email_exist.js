@@ -11,7 +11,7 @@ checkEmailExist = async (email) => {
       console.log(doc.id, "=>", doc.data());
     });
     throw {
-      code: 500,
+      code: 400,
       msg: `Email Address ${email} is Already Taken!`,
     };
   }

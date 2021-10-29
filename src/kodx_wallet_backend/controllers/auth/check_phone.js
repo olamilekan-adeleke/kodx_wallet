@@ -11,7 +11,7 @@ checkPhoneExist = async (phone) => {
       console.log(doc.id, "=>", doc.data());
     });
     throw {
-      code: 500,
+      code: 400,
       msg: `Phone Number '${phone}' is Already Taken!`,
     };
   }

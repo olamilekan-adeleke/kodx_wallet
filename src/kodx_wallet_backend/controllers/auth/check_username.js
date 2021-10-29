@@ -10,7 +10,7 @@ checkUsernameExist = async (username) => {
     return;
   } else {
     throw {
-      code: 500,
+      code: 400,
       msg: `Username '${username} is Already Taken!`,
     };
   }
