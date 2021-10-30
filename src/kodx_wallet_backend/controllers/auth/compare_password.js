@@ -9,13 +9,13 @@ const comparePassword = async (password, hashedPassword) => {
     } else {
       throw {
         code: 400,
-        msg: "Password Does Not Match",
+        msg: "Password Is Incorrect!",
       };
     }
   } catch (error) {
     throw {
       code: 400,
-      msg: "Password Does Not Match",
+      msg: "Password Is Incorrect!",
     };
   }
 };

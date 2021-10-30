@@ -1,18 +1,18 @@
 const { userCollectionRef } = require("../firebase/firebase_admin");
 
-// const checkUserExist = async (email) => {
-//   const snapshot = await userCollectionRef.where("email", "==", email).get();
+const getUser = async (userId) => {
+  const data = await userCollectionRef.doc(userId).get();
 
-//   if (snapshot.empty) {
-//     throw {
-//       code: 400,
-//       msg: `User not found!`,
-//     };
-//   } else {
-//     const user = snapshot.docs[0].data();
-//     console.log(user);
-//     return user;
-//   }
-// };
+  if (!data) {
+    throw {
+      code: 400,
+      msg: `User Data not found!`,
+    };
+  } else {
+    const user = data.data();
+    console.log(user);
+    return user;
+  }
+};
 
-// module.exports = checkUserExist;
+module.exports = getUser;

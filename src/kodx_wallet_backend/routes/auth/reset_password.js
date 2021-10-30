@@ -1,7 +1,7 @@
-const checkUserExist = require("../../controllers/auth/check_if_user_exist");
 const comparePassword = require("../../controllers/auth/compare_password");
 const updateUserData = require("../../controllers/auth/update_user_data");
 const hashPassword = require("../../controllers/auth/hash_password");
+const getUser = require("../../controllers/auth/get_user");
 
 const resetPassword = async (req, res) => {
   try {
@@ -15,10 +15,17 @@ const resetPassword = async (req, res) => {
     }
 
     // check if user exist
-    const userData = await checkUserExist(email);
+    const userData = await getUser(user_id);
 
     // compare password with hashed password in db
-    await comparePassword(old_password, userData.password);
+    try {
+      await comparePassword(old_password, userData.password);
+    } catch (err) {
+      throw {
+        code: 400,
+        msg: "Old Password Not Correct!",
+      };
+    }
 
     // hash new password
     const hashedPassword = await hashPassword(password);
