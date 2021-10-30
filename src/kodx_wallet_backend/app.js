@@ -10,14 +10,6 @@ app.use(responseTime());
 // authentication
 app.use("/auth", authRoutes);
 
-// test
-app.get("/home", (req, res) => {
-  res.status(200).json({
-    status: "success",
-    msg: "Working fine",
-  });
-});
-
 app.listen(3001, () => {
   console.log("Express server listening on port 3000!");
 });
