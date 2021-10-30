@@ -7,5 +7,6 @@ admin.initializeApp({
 });
 
 const firestoreDatabase = admin.firestore();
+const userCollectionRef = firestoreDatabase.collection("users");
 
-module.exports = { admin, firestoreDatabase };
+module.exports = { userCollectionRef };

@@ -1,7 +1,7 @@
-const { firestoreDatabase } = require("../firebase/firebase_admin");
+const { userCollectionRef } = require("../firebase/firebase_admin");
 
 checkEmailExist = async (email) => {
-  const userCollectionRef = firestoreDatabase.collection("users");
+  
   const snapshot = await userCollectionRef.where("email", "==", email).get();
 
   if (snapshot.empty) {
