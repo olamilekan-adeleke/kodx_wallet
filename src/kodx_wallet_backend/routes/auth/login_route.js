@@ -1,6 +1,7 @@
 const checkUserExist = require("../../controllers/auth/check_if_user_exist");
 const comparePassword = require("../../controllers/auth/compare_password");
 const generateToken = require("../../controllers/auth/generate_token");
+const updateUserData = require("../../controllers/auth/update_user_data");
 
 const loginRoute = async (req, res) => {
   try {
@@ -11,7 +12,8 @@ const loginRoute = async (req, res) => {
     // compare password with hashed password in db
     await comparePassword(password, userData.password);
 
-    // TODO: update user last login
+    // update user last login
+    await updateUserData(userData.user_id, { last_login: req._startTime });
 
     // send back user details and token
     const token = await generateToken(userData.user_id);
@@ -19,7 +21,6 @@ const loginRoute = async (req, res) => {
     res.status(200).json({
       status: "success",
       msg: "Login Successful!",
-      data: userData,
       token,
     });
   } catch (err) {

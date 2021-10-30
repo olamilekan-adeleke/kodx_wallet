@@ -28,10 +28,10 @@ const resetPassword = async (req, res) => {
     }
 
     // hash new password
-    const hashedPassword = await hashPassword(password);
+    const newPassword = await hashPassword(password);
 
     // update password
-    await updateUserData(user_id, { password: hashedPassword });
+    await updateUserData(user_id, { password: newPassword });
 
     res.status(201).json({
       status: "success",
