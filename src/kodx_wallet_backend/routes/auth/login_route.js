@@ -11,7 +11,7 @@ const loginRoute = async (req, res) => {
     // compare password with hashed password in db
     await comparePassword(password, userData.password);
 
-    // TODOD: update user last login
+    // TODO: update user last login
 
     // send back user details and token
     const token = await generateToken(userData.user_id);
