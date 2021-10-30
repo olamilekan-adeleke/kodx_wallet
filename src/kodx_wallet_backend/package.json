@@ -4,12 +4,15 @@
   "description": "node js api backend for a wallet app using express and connecting to firebase",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node index.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kod-x",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "firebase-admin": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
