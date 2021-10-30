@@ -9,7 +9,7 @@ const validateToken = async (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.TOKEN_KEY, (err, decoded) => {
       if (err) {
-        res.status(403).send({
+        return res.status(403).send({
           status: "fail",
           msg: "Error Validating Token!",
         });
@@ -20,7 +20,7 @@ const validateToken = async (req, res, next) => {
       next();
     });
   } else {
-    res.status(403).send({
+    return res.status(403).send({
       status: "fail",
       msg: "Token not provided!",
     });

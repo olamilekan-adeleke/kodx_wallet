@@ -18,7 +18,7 @@ app.use("/auth", authRoutes);
 
 // user
 app.use("/user", validateToken, (req, res) => {
-  res.json({ status: "success" });
+  res.json({ status: "success", id: req.decoded.id });
 });
 
 // start server
