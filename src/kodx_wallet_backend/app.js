@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 const responseTime = require("response-time");
 const authRoutes = require("./routes/auth/auth_routers");
 
@@ -6,6 +7,7 @@ const authRoutes = require("./routes/auth/auth_routers");
 const app = express();
 app.use(express.json());
 app.use(responseTime());
+app.use(morgan("dev"));
 
 // authentication
 app.use("/auth", authRoutes);
