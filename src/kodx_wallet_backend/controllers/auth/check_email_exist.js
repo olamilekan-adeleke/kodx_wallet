@@ -1,6 +1,6 @@
 const { userCollectionRef } = require("../firebase/firebase_admin");
 
-checkEmailExist = async (email) => {
+const checkEmailExist = async (email) => {
   
   const snapshot = await userCollectionRef.where("email", "==", email).get();
 
