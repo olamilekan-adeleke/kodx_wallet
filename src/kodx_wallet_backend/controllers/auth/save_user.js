@@ -9,7 +9,7 @@ const saveUserToDB = async (data) => {
   let currentLetter = "";
 
   username.split("").forEach((ele) => {
-    currentLetter += ele;
+    currentLetter += ele.toLowerCase();
     searchKey.push(currentLetter);
   });
 
