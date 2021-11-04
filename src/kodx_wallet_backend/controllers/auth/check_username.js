@@ -1,7 +1,6 @@
-const { firestoreDatabase } = require("../firebase/firebase_admin");
+const { userCollectionRef } = require("../firebase/firebase_admin");
 
 checkUsernameExist = async (username) => {
-  const userCollectionRef = firestoreDatabase.collection("users");
   const snapshot = await userCollectionRef
     .where("username", "==", username)
     .get();

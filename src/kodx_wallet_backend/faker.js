@@ -1,12 +1,20 @@
 var faker = require("faker");
+const saveUserToDB = require("./controllers/auth/save_user");
 
-// Initializing our variables with a different random data each time it is run
-var randomName = faker.name.findName(); // Generates a random name
-var randomEmail = faker.internet.email(); // Generates a random email
-var randomPhone = faker.phone()
-// var randomUsrName = 
+const generate = async () => {
+  for (i = 0; i < 20; i++) {
+    const user = {
+      fullname: faker.name.findName(),
+      email: faker.internet.email(),
+      phone: faker.phone.phoneNumber(),
+      username: faker.internet.userName(),
+      password: "test123456",
+      search_key: searchKey,
+    };
 
-for (i = 0; i < 20; i++) {
-    // const 
-  
-}
+    await saveUserToDB(user);
+    console.log(`user ${i} added`);
+  }
+};
+
+generate();
