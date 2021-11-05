@@ -28,7 +28,7 @@ app.use("/user", userRoute);
 app.use("/wallet", walletRoutes);
 
 // send found
-app.use("send-fund", sendFundRoutes);
+app.use("/send-fund", sendFundRoutes);
 
 // not found
 app.use("/", notFoundRoutes);
