@@ -9,5 +9,6 @@ admin.initializeApp({
 
 const firestoreDatabase = admin.firestore();
 const userCollectionRef = firestoreDatabase.collection("users");
+const walletCollectionRef = firestoreDatabase.collection("wallets");
 
-module.exports = { userCollectionRef };
+module.exports = { userCollectionRef, walletCollectionRef };
