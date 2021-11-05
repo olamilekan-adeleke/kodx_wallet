@@ -1,5 +1,6 @@
 const walletRouter = require("express").Router();
+const getWallet = require("./get_wallet");
 
-walletRouter.get("/", );
+walletRouter.get("/", getWallet);
 
 module.exports = walletRouter;
