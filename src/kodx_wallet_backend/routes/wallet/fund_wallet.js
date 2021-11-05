@@ -14,7 +14,7 @@ const fundWallet = async (req, res) => {
     await updateWalletController(userId, amount);
 
     // add transaction  to transaction history
-    await addTransactionToHistory(userId);
+    await addTransactionToHistory(userId, amount);
 
     res.status(200).json({
       status: "success",
