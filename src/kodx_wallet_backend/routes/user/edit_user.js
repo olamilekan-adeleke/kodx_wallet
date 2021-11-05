@@ -5,13 +5,14 @@ const updateUser = async (req, res) => {
 
   try {
     const userId = req.decoded.id;
-    const { email, phone, fullname } = req.body;
+    const { email, phone, fullname, image_url } = req.body;
 
     if (email) data.email = email;
     if (fullname) data.fullname = fullname;
     if (phone) data.phone = phone;
+    if(image_url) data.image_url = image_url;
 
-    if (!(email || fullname || phone)) {
+    if (!(email || fullname || phone || image_url)) {
       throw {
         code: 403,
         msg: "Please Pass User Data You Want To Update! \nYou Can Only Update Email, Phone Number and Full Name",
