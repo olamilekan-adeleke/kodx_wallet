@@ -1,6 +1,9 @@
 const { userCollectionRef } = require("../firebase/firebase_admin");
 const { v4: uuidv4 } = require("uuid");
 
+
+var faker = require("faker");
+
 const saveUserToDB = async (data) => {
   const { email, password, fullname, phone, username } = data;
   const userId = uuidv4();
@@ -13,6 +16,8 @@ const saveUserToDB = async (data) => {
     searchKey.push(currentLetter);
   });
 
+  
+
   await userCollectionRef.doc(userId).set({
     email,
     password,
@@ -21,6 +26,7 @@ const saveUserToDB = async (data) => {
     username,
     user_id: userId,
     search_key: searchKey,
+    imageUrl: faker.image.avatar(),
   });
 };
 
