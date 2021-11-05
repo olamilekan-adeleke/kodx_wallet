@@ -8,7 +8,16 @@ admin.initializeApp({
 });
 
 const firestoreDatabase = admin.firestore();
+
+const fieldValue = admin.firestore.FieldValue;
+
 const userCollectionRef = firestoreDatabase.collection("users");
 const walletCollectionRef = firestoreDatabase.collection("wallets");
+const transactionCollectionRef = firestoreDatabase.collection("transactions");
 
-module.exports = { userCollectionRef, walletCollectionRef };
+module.exports = {
+  fieldValue,
+  userCollectionRef,
+  walletCollectionRef,
+  transactionCollectionRef,
+};

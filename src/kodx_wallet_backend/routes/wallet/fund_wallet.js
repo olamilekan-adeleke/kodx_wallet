@@ -1,7 +1,8 @@
 const validateTransactionFormPayStack = require("../../controllers/wallet/validate_transaction");
 const updateWalletController = require("../../controllers/wallet/update_wallet_controller");
+const addTransactionToHistory = require("../../controllers/wallet/add_transaction_to_history");
 
-const fundWallet = (req, res) => {
+const fundWallet = async (req, res) => {
   try {
     const userId = req.decoded.id;
     const txId = req.query.txId;
@@ -13,6 +14,7 @@ const fundWallet = (req, res) => {
     await updateWalletController(userId, amount);
 
     // add transaction  to transaction history
+    await addTransactionToHistory(userId);
 
     res.status(200).json({
       status: "success",

@@ -1,11 +1,17 @@
-const { walletCollectionRef } = require("../firebase/firebase_admin");
+const {
+  walletCollectionRef,
+  fieldValue,
+} = require("../firebase/firebase_admin");
 
 const updateWalletController = async (userId, amount) => {
   try {
-    await walletCollectionRef.doc(userId).update({ balance: amount });
+    await walletCollectionRef
+      .doc(userId)
+      .update({ balance: fieldValue.increment(amount) });
   } catch (err) {
     throw {
-      code: 400,
+      code: 500,
+      msg: "Unable To Updated Wallet!",
     };
   }
 };
