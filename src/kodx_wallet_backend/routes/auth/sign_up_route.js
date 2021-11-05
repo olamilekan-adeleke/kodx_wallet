@@ -4,6 +4,7 @@ const checkPhoneExist = require("../../controllers/auth/check_phone");
 const checkUsernameExist = require("../../controllers/auth/check_username");
 const hashPassword = require("../../controllers/auth/hash_password");
 const saveUserToDB = require("../../controllers/auth/save_user");
+const CreateWalletForNewUser = require("../../controllers/auth/create_wallet");
 
 const signupRoute = async (req, res) => {
   try {
@@ -24,7 +25,10 @@ const signupRoute = async (req, res) => {
     req.body.password = await hashPassword(req.body.password);
 
     // save user data to database
-    await saveUserToDB(req.body);
+    const userId = await saveUserToDB(req.body);
+
+    // create wallet for user
+    await CreateWalletForNewUser(userId);
 
     res.status(201).json({ status: "success", msg: "User Created!" });
   } catch (err) {

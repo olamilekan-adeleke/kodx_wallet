@@ -25,6 +25,8 @@ const saveUserToDB = async (data) => {
     search_key: searchKey,
     image_url: faker.image.avatar(),
   });
+
+  return userId;
 };
 
 module.exports = saveUserToDB;
