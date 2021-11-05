@@ -2,31 +2,29 @@ const {
   transactionCollectionRef,
 } = require("../../controllers/firebase/firebase_admin");
 
-const getSearchUser = async (searchQuery, lastUsername) => {
+const getTransactionHistory = async (lastDocTimestamp) => {
   const limit = 5;
-  let users = [];
+  let history = [];
 
   if (!lastUsername) {
     const query = await transactionCollectionRef
-      .orderBy("username")
-      .where("search_key", "array-contains", searchQuery)
+      .orderBy("timestamp")
       .limit(limit)
       .get();
 
-    users = query.docs.map((doc) => doc.data());
+    history = query.docs.map((doc) => doc.data());
   } else {
     const query = await transactionCollectionRef
-      .orderBy("username")
-      .where("search_key", "array-contains", searchQuery)
-      .startAfter(lastUsername)
+      .orderBy("timestamp")
+      .startAfter(lastDocTimestamp)
       .limit(limit)
       .get();
 
-    users = query.docs.map((doc) => doc.data());
+    history = query.docs.map((doc) => doc.data());
   }
 
-  console.log(users);
-  return users;
+  console.log(history);
+  return history;
 };
 
-module.exports = getSearchUser;
+module.exports = getTransactionHistory;

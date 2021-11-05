@@ -2,8 +2,8 @@ const {
   userCollectionRef,
 } = require("../../controllers/firebase/firebase_admin");
 
-const getSearchUser = async (searchQuery, lastUsername) => {
-  const limit = 5;
+const getSearchUser = async (searchQuery, lastUsername, limit) => {
+  limit = limit ?? 10;
   let users = [];
 
   if (!lastUsername) {
