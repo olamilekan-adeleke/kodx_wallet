@@ -1,4 +1,4 @@
-const validateUserDetails = require("../../controllers/validate_signup_details");
+const validateUserDetails = require("../../controllers/auth/validate_signup_details");
 const checkEmailExist = require("../../controllers/auth/check_email_exist");
 const checkPhoneExist = require("../../controllers/auth/check_phone");
 const checkUsernameExist = require("../../controllers/auth/check_username");
