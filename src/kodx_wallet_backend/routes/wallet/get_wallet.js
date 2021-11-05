@@ -2,7 +2,16 @@ const fetchWalletDetails = require("../../controllers/wallet/get_wallet_details"
 
 const getWallet = async (req, res) => {
   try {
-    res.status(200).json({ status: "success" });
+    const userId = req.decoded.id;
+
+    // get wallet data
+    const data = await fetchWalletDetails(userId);
+
+    res.status(200).json({
+      status: "success",
+      msg: "Fetched User Wallet Data Successfully!",
+      data,
+    });
   } catch (err) {
     console.log(err);
     const error = err;

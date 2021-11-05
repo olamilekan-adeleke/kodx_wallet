@@ -5,7 +5,7 @@ const getUser = async (userId) => {
 
   if (!data) {
     throw {
-      code: 400,
+      code: 404,
       msg: `User Data not found!`,
     };
   } else {
