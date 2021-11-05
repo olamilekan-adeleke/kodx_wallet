@@ -10,7 +10,7 @@ const getSearchUser = async (searchQuery, lastUsername, limit) => {
     const query = await userCollectionRef
       .orderBy("username")
       .where("search_key", "array-contains", searchQuery)
-      .limit(limit)
+      .limit(parseInt(limit))
       .get();
 
     users = query.docs.map((doc) => doc.data());
@@ -19,7 +19,7 @@ const getSearchUser = async (searchQuery, lastUsername, limit) => {
       .orderBy("username")
       .where("search_key", "array-contains", searchQuery)
       .startAfter(lastUsername)
-      .limit(limit)
+      .limit(parseInt(limit))
       .get();
 
     users = query.docs.map((doc) => doc.data());
