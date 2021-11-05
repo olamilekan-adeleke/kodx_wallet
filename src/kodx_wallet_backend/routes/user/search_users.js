@@ -3,9 +3,10 @@ const getSearchUser = require("../../controllers/user/get_search_user");
 const searchUsers = async (req, res) => {
   try {
     const userId = req.decoded.id;
-    const { last_user_id, query } = req.query;
+    const { last_username, query } = req.query;
 
     console.log(query);
+    console.log(last_username);
 
     if (!query) {
       throw {
@@ -14,7 +15,7 @@ const searchUsers = async (req, res) => {
       };
     }
 
-    const users = await getSearchUser(query, last_user_id);
+    const users = await getSearchUser(query, last_username);
 
     if (users === undefined || users.length === 0) {
       throw {

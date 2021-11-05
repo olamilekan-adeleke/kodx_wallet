@@ -2,29 +2,31 @@ const {
   userCollectionRef,
 } = require("../../controllers/firebase/firebase_admin");
 
-const getSearchUser = async (searchQuery, lastUserId) => {
-  let user = [];
+const getSearchUser = async (searchQuery, lastUsername) => {
+  const limit = 5;
+  let users = [];
 
-  if (!lastUserId) {
+  if (!lastUsername) {
     const query = await userCollectionRef
       .orderBy("username")
-      .where("username", "array-contains", searchQuery)
-      .limit(10)
+      .where("search_key", "array-contains", searchQuery)
+      .limit(limit)
       .get();
 
     users = query.docs.map((doc) => doc.data());
   } else {
     const query = await userCollectionRef
       .orderBy("username")
-      .where("username", "array-contains", searchQuery)
-      .startAfter(lastUserId)
-      .limit(10)
+      .where("search_key", "array-contains", searchQuery)
+      .startAfter(lastUsername)
+      .limit(limit)
       .get();
 
     users = query.docs.map((doc) => doc.data());
   }
 
   console.log(users);
+  return users;
 };
 
 module.exports = getSearchUser;
