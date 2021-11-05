@@ -3,30 +3,27 @@ const getTransactionHistory = require("../../controllers/wallet/get_transaction_
 const transactionHistory = async (req, res) => {
   try {
     const userId = req.decoded.id;
-    const { last_username } = req.query;
+    const { last_doc_timestamp, limit } = req.query;
 
-    console.log(query);
-    console.log(last_username);
+    console.log(last_doc_timestamp);
+    console.log(limit);
 
-    if (!query) {
-      throw {
-        code: 400,
-        msg: "Search Query Needed!!",
-      };
-    }
+    const history = await getTransactionHistory(
+      userId,
+      last_doc_timestamp,
+      limit
+    );
 
-    const users = await getSearchUser(query, last_username);
-
-    if (users === undefined || users.length === 0) {
+    if (history === undefined || history.length === 0) {
       throw {
         code: 404,
-        msg: "User not found!",
+        msg: "Transactions not found!",
       };
     }
     res.status(200).json({
       status: "success",
-      msg: users.length + " User Fetched",
-      data: users,
+      msg: history.length + " Transactions Fetched",
+      data: history,
     });
   } catch (err) {
     console.log(err);

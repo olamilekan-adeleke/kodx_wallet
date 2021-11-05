@@ -1,6 +1,6 @@
 const notFound = (req, res) => {
   res.status(404).json({
-    status: 404,
+    status: "fail",
     msg: "Sorry Couldn't Find That Route!",
   });
 };

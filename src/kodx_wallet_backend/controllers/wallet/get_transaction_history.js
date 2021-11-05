@@ -2,22 +2,26 @@ const {
   transactionCollectionRef,
 } = require("../../controllers/firebase/firebase_admin");
 
-const getTransactionHistory = async (lastDocTimestamp) => {
-  const limit = 5;
+const getTransactionHistory = async (userId, lastDocTimestamp, limit) => {
+  limit = limit ?? 5;
   let history = [];
 
-  if (!lastUsername) {
+  if (!lastDocTimestamp) {
     const query = await transactionCollectionRef
+      .doc(userId)
+      .collection("history")
       .orderBy("timestamp")
-      .limit(limit)
+      .limit(parseInt(limit))
       .get();
 
     history = query.docs.map((doc) => doc.data());
   } else {
     const query = await transactionCollectionRef
+      .doc(userId)
+      .collection("history")
       .orderBy("timestamp")
       .startAfter(lastDocTimestamp)
-      .limit(limit)
+      .limit(parseInt(limit))
       .get();
 
     history = query.docs.map((doc) => doc.data());
