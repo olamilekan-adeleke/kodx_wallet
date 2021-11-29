@@ -6,6 +6,7 @@ import 'cores/utils/route_name.dart';
 import 'features/auth/views/pages/forgot_password_screen.dart';
 import 'features/auth/views/pages/login_screen.dart';
 import 'features/auth/views/pages/signup_screen.dart';
+import 'features/home/views/screens/home_tab_screen.dart';
 
 List<GetPage<Widget>> pages() {
   return <GetPage<Widget>>[
@@ -16,8 +17,6 @@ List<GetPage<Widget>> pages() {
       name: RouteName.forgotPassword,
       page: () => const ForgotPasswordScreen(),
     ),
-    GetPage(
-        name: RouteName.forgotPassword,
-        page: () => const ForgotPasswordScreen()),
+    GetPage(name: RouteName.homeTab, page: () => const HomeTabScreen()),
   ];
 }
