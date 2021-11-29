@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kodx_wallet_mobile/cores/utils/custom_sizer_utils.dart';
 
 import '../../cores/constants/color.dart';
 
@@ -100,9 +101,9 @@ class CustomButton extends StatelessWidget {
     } else {
       child = textWidget(
         text ?? 'no text',
-        color: textColor ?? Colors.white,
-        size: textSize,
-        fontWeight: textFontWeight,
+        color: textColor ?? white,
+        size: textSize ?? sizerSp(20),
+        fontWeight: textFontWeight ?? FontWeight.w700,
       );
     }
 
@@ -124,8 +125,8 @@ class CustomButton extends StatelessWidget {
                   ),
                 ),
           backgroundColor: busy
-              ? MaterialStateProperty.all(kcGrey100)
-              : MaterialStateProperty.all(color ?? kcPrimaryColorTwo),
+              ? MaterialStateProperty.all(kcPrimaryColor)
+              : MaterialStateProperty.all(color ?? kcPrimaryColor),
         ),
         child: child,
       ),

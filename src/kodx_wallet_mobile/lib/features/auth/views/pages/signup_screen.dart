@@ -62,20 +62,23 @@ class SignUpScreen extends StatelessWidget {
           ),
           SizedBox(height: sizerSp(10)),
           KodTextField(
-            hintText: 'Last Name',
+            hintText: 'Enter Last Name',
+            labelText: 'Last Name',
             textEditingController: registerController.lastNameController,
             validator: (String? value) =>
                 formFieldValidator(value, 'Last Name', 3),
           ),
           SizedBox(height: sizerSp(10)),
           KodTextField(
-            hintText: 'Email',
+            hintText: 'john.smith@gmail.com',
+            labelText: 'Email',
             textEditingController: registerController.emailController,
             textInputType: TextInputType.emailAddress,
           ),
           SizedBox(height: sizerSp(10)),
           KodTextField(
-            hintText: 'Phone number',
+            hintText: '08011223678',
+            labelText: 'Phone number',
             textEditingController: registerController.phoneController,
             textInputType: TextInputType.number,
             validator: (String? value) =>
@@ -83,11 +86,12 @@ class SignUpScreen extends StatelessWidget {
           ),
           SizedBox(height: sizerSp(10)),
           KodTextField(
-            hintText: 'Password',
+            hintText: 'xxxxxxxxxx',
+            labelText: 'Password',
             textEditingController: registerController.passwordController,
             isPassword: true,
             validator: (String? value) =>
-                formFieldValidator(value, 'password', 5),
+                formFieldValidator(value, 'password', 6),
           ),
           SizedBox(height: sizerSp(40)),
           Obx(() {
