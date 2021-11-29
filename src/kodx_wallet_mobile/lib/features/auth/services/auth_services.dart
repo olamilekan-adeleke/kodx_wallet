@@ -1,13 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/instance_manager.dart';
-
-import '../../../cores/utils/local_database_controller.dart';
 import '../../../features/auth/model/user_details_model.dart';
 
 class AuthenticationRepo {
   // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  static final LocalDatabaseController localDatabaseController =
-      Get.find<LocalDatabaseController>();
   final CollectionReference<dynamic> userCollectionRef =
       FirebaseFirestore.instance.collection('users');
 
