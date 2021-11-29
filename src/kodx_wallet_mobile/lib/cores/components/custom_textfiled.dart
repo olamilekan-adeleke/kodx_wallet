@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kodx_wallet_mobile/cores/components/custom_text_widget.dart';
 import '../../cores/constants/color.dart';
 import '../utils/custom_sizer_utils.dart';
 
@@ -39,54 +40,67 @@ class _KodTextFieldState extends State<KodTextField> {
     return ValueListenableBuilder<bool>(
       valueListenable: obscureText,
       builder: (BuildContext context, bool value, dynamic child) {
-        return TextFormField(
-          maxLines: widget.maxLine,
-          cursorColor: kcPrimaryColor,
-          style: GoogleFonts.raleway(),
-          controller: widget.textEditingController,
-          autocorrect: widget.autoCorrect,
-          autovalidateMode: widget.validator != null
-              ? AutovalidateMode.onUserInteraction
-              : null,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.grey.shade100,
-            border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(8.0)),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(8.0)),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(8.0)),
-            ),
-            disabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(8.0)),
-            ),
-            labelText: widget.labelText,
-            labelStyle: const TextStyle(
-              color: kcTextColor,
-              fontWeight: FontWeight.w800,
-            ),
-            hintText: widget.hintText,
-            hintStyle: TextStyle(
-              color: Colors.grey.shade400,
-              fontWeight: FontWeight.w600,
-            ),
-            suffixIcon: widget.isPassword == false
-                ? const SizedBox()
-                : IconButton(
-                    icon: const Icon(Icons.remove_red_eye_outlined),
-                    onPressed: () => obscureText.value = !obscureText.value,
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            widget.labelText.isEmpty
+                ? Container()
+                : Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      textWidget(
+                        widget.labelText,
+                        size: sizerSp(16),
+                        fontWeight: FontWeight.w600,
+                      ),
+                      SizedBox(height: sizerSp(5)),
+                    ],
                   ),
-          ),
-          keyboardType: widget.textInputType,
-          obscureText: value,
-          validator: (String? val) => widget.validator!(val?.trim()),
+            TextFormField(
+              maxLines: widget.maxLine,
+              cursorColor: kcPrimaryColor,
+              style: GoogleFonts.raleway(),
+              controller: widget.textEditingController,
+              autocorrect: widget.autoCorrect,
+              autovalidateMode: widget.validator != null
+                  ? AutovalidateMode.onUserInteraction
+                  : null,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.grey.shade100,
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(sizerSp(8.0)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(sizerSp(8.0)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(sizerSp(8.0)),
+                ),
+                disabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(sizerSp(8.0)),
+                ),
+                hintText: widget.hintText,
+                hintStyle: TextStyle(
+                  color: Colors.grey.shade400,
+                  fontWeight: FontWeight.w600,
+                ),
+                suffixIcon: widget.isPassword == false
+                    ? const SizedBox()
+                    : IconButton(
+                        icon: const Icon(Icons.remove_red_eye_outlined),
+                        onPressed: () => obscureText.value = !obscureText.value,
+                      ),
+              ),
+              keyboardType: widget.textInputType,
+              obscureText: value,
+              validator: (String? val) => widget.validator!(val?.trim()),
+            ),
+          ],
         );
       },
     );

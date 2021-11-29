@@ -54,7 +54,8 @@ class SignUpScreen extends StatelessWidget {
           ),
           SizedBox(height: sizerSp(30)),
           KodTextField(
-            hintText: 'First Name',
+            hintText: 'Enter First Name',
+            labelText: 'First Name',
             textEditingController: registerController.firstNameController,
             validator: (String? value) =>
                 formFieldValidator(value, 'First Name', 3),
