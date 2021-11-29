@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:kodx_wallet_mobile/cores/components/custom_text_widget.dart';
 import 'package:kodx_wallet_mobile/cores/constants/color.dart';
 import 'package:kodx_wallet_mobile/cores/utils/custom_sizer_utils.dart';
@@ -16,10 +17,13 @@ class HomeWalletWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(sizerSp(8)),
         gradient: LinearGradient(
           colors: [
-            kcPrimaryColor,
-            kcPrimaryColor.withOpacity(0.8),
             kcPrimaryColor.withOpacity(0.7),
+            kcPrimaryColor.withOpacity(0.8),
+            kcPrimaryColor,
           ],
+          stops: const [0.1, 0.3, 0.9],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
       ),
       child: Column(
