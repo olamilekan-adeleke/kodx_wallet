@@ -7,6 +7,7 @@ class UserDetailsModel {
     required this.userId,
     required this.email,
     required this.fullName,
+    required this.username,
     this.bio,
     required this.phoneNumber,
     this.profilePicUrl,
@@ -18,6 +19,7 @@ class UserDetailsModel {
       userId: map!['user_id'].toString(),
       email: map['email'] as String,
       fullName: map['fullname'] as String,
+      username: map['username'] as String,
       phoneNumber: map['phone'] as String,
       bio: map['bio'] == null
           ? 'Hey there am ${map['fullname']}'
@@ -35,6 +37,7 @@ class UserDetailsModel {
   final String userId;
   final String email;
   final String fullName;
+  final String username;
   final String? bio;
   final String phoneNumber;
   final String? profilePicUrl;
@@ -56,6 +59,7 @@ class UserDetailsModel {
     return <String, dynamic>{
       'user_id': userId,
       'email': email,
+      'username': username,
       'fullname': fullName,
       'bio': bio,
       'phone': phoneNumber,
@@ -69,6 +73,7 @@ class UserDetailsModel {
     String? userId,
     String? email,
     String? fullName,
+    String? username,
     String? phoneNumber,
     String? profilePicUrl,
     Timestamp? dateJoined,
@@ -77,6 +82,7 @@ class UserDetailsModel {
       userId: userId ?? this.userId,
       email: email ?? this.email,
       fullName: fullName ?? this.fullName,
+      username: username ?? this.username,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       profilePicUrl: profilePicUrl ?? this.profilePicUrl,
       lastLogin: dateJoined ?? this.lastLogin,

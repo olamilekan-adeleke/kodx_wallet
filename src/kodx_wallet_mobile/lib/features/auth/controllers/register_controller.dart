@@ -37,6 +37,7 @@ class RegisterController extends GetxController {
       fullName: fullNameController.text.trim(),
       phoneNumber: phoneController.text.trim(),
       profilePicUrl: null,
+      username: usernameController.text.trim(),
     );
 
     try {
