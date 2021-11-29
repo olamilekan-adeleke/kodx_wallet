@@ -29,40 +29,22 @@ class LoginScreen extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: sizerSp(20)),
             textWidget(
-              'Hey, \nLogin Now.',
+              'Welcome! \nLogin Now',
               fontWeight: FontWeight.w700,
               size: sizerSp(30),
-            ),
-            GestureDetector(
-              onTap: () => NavigationService.navigateTo(RouteName.signup),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  textWidget(
-                    'Are you new here? ',
-                    fontWeight: FontWeight.w200,
-                    size: sizerSp(13),
-                  ),
-                  textWidget(
-                    'Create Account',
-                    fontWeight: FontWeight.w400,
-                    size: sizerSp(13),
-                    color: kcPrimaryColorTwo,
-                  ),
-                ],
-              ),
             ),
             SizedBox(height: sizerSp(30)),
             Center(
               child: SvgPicture.asset(
-                'assets/images/_login.svg',
+                'assets/images/signup.svg',
                 height: sizerSp(100),
                 width: sizerSp(150),
               ),
             ),
             SizedBox(height: sizerSp(40)),
             KodTextField(
-              hintText: 'Email',
+              hintText: 'john.smith@gmail.com',
+              labelText: 'Email',
               textEditingController: loginControllers.emailController,
               textInputType: TextInputType.emailAddress,
               validator: (String? value) =>
@@ -70,11 +52,12 @@ class LoginScreen extends StatelessWidget {
             ),
             SizedBox(height: sizerSp(10)),
             KodTextField(
-              hintText: 'Password',
+              hintText: 'xxxxxxxx',
+              labelText: 'Password',
               isPassword: true,
               textEditingController: loginControllers.passwordController,
               validator: (String? value) =>
-                  formFieldValidator(value, 'password', 5),
+                  formFieldValidator(value, 'password', 6),
             ),
             SizedBox(height: sizerSp(10)),
             Row(
@@ -85,9 +68,9 @@ class LoginScreen extends StatelessWidget {
                       NavigationService.navigateTo(RouteName.forgotPassword),
                   child: textWidget(
                     'Forgot Password?',
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w500,
                     size: sizerSp(12),
-                    color: kcPrimaryColorTwo,
+                    color: kcPrimaryColor,
                   ),
                 ),
               ],
@@ -104,6 +87,25 @@ class LoginScreen extends StatelessWidget {
               );
             }),
             SizedBox(height: sizerSp(20)),
+            GestureDetector(
+              onTap: () => NavigationService.navigateTo(RouteName.signup),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  textWidget(
+                    'Are you new here? ',
+                    fontWeight: FontWeight.w400,
+                    size: sizerSp(13),
+                  ),
+                  textWidget(
+                    'Create Account',
+                    fontWeight: FontWeight.w700,
+                    size: sizerSp(13),
+                    color: kcPrimaryColor,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
