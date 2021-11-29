@@ -10,6 +10,8 @@ class AuthenticationRepo {
   final CollectionReference<dynamic> userCollectionRef =
       FirebaseFirestore.instance.collection('users');
 
+  String? token;
+
   Future<void> loginUserWithEmailAndPassword(
     String email,
     String password,
@@ -29,6 +31,8 @@ class AuthenticationRepo {
       body: json.encode(body),
     );
 
+    log(response.body);
+
     if (response.statusCode >= 500) {
       throw 'Unable to connect to server! \nSomething went wrong.';
     }
@@ -37,6 +41,7 @@ class AuthenticationRepo {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (responseData['status'] == 'success') {
+        token = responseData['token'];
         return;
       } else {
         throw responseData['msg'];
