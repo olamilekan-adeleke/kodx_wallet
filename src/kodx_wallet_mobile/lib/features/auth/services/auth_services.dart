@@ -16,8 +16,6 @@ class AuthenticationRepo {
     String email,
     String password,
   ) async {
-    UserDetailsModel? result;
-
     final Map<String, String> header = {"Content-Type": "application/json"};
 
     final Map<String, dynamic> body = {
