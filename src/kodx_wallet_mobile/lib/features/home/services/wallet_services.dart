@@ -4,14 +4,14 @@ import 'dart:developer';
 import 'package:get/instance_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:kodx_wallet_mobile/cores/utils/api.dart';
-import 'package:kodx_wallet_mobile/features/auth/model/user_details_model.dart';
 import 'package:kodx_wallet_mobile/features/auth/services/auth_services.dart';
+import 'package:kodx_wallet_mobile/features/home/model/wallet_model.dart';
 
 class WalletService {
   final AuthenticationRepo authenticationRepo = Get.find<AuthenticationRepo>();
 
-  Future<UserDetailsModel?> getWalletData() async {
-    UserDetailsModel? result;
+  Future<WalletModel?> getWalletData() async {
+    WalletModel? result;
 
     final Map<String, String> header = {
       "Content-Type": "application/json",
@@ -33,7 +33,7 @@ class WalletService {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (responseData['status'] == 'success') {
-        result = UserDetailsModel.fromMap(responseData['data']);
+        result = WalletModel.fromMap(responseData['data']);
       } else {
         throw responseData['msg'];
       }
