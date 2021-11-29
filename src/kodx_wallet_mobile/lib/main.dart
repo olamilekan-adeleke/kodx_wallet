@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import 'cores/utils/locator.dart';
@@ -19,14 +20,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (_, __, ___) {
-        return MaterialApp(
+        return GetMaterialApp(
           title: 'Kodx Wallet',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.blue
           ),
-          home: const WrapperScreen(),
+          // home: const WrapperScreen(),
+          
         );
       },
     );
   }
 }
+
+
+// List<GetPage>
