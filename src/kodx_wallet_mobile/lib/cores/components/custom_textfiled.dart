@@ -50,7 +50,7 @@ class _KodTextFieldState extends State<KodTextField> {
                     children: [
                       textWidget(
                         widget.labelText,
-                        size: sizerSp(16),
+                        size: sizerSp(15),
                         fontWeight: FontWeight.w600,
                       ),
                       SizedBox(height: sizerSp(5)),
