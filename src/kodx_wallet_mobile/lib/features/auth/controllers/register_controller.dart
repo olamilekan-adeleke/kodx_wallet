@@ -58,7 +58,8 @@ class RegisterController extends GetxController {
 
       if (result['status'] == 'success') {
         _controllerStateEnum.value = ControllerState.success;
-        // NavigationService.goBack();
+        NavigationService.goBack();
+        await Future.delayed(const Duration(milliseconds: 300));
         CustomSnackBarService.showSuccessSnackBar(
           'Success',
           'Account Successfully Created!',

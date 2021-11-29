@@ -48,6 +48,7 @@ class UserDetailsModel {
       'user_id': userId,
       'email': email,
       'fullname': fullName,
+      'username': username,
       'bio': bio,
       'phone': phoneNumber,
       'image_url': profilePicUrl,

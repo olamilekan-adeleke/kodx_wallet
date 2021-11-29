@@ -9,24 +9,41 @@ class AuthenticationRepo {
   // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final CollectionReference<dynamic> userCollectionRef =
       FirebaseFirestore.instance.collection('users');
+  UserDetailsModel? loginUser;
 
-  Future<void> loginUserWithEmailAndPassword(
+  Future<UserDetailsModel?> loginUserWithEmailAndPassword(
     String email,
     String password,
   ) async {
-    // final UserCredential userCredential =
-    //     await _firebaseAuth.signInWithEmailAndPassword(
-    //   email: email,
-    //   password: password,
-    // );
+    UserDetailsModel? result;
 
-    // final User? user = userCredential.user;
-    // infoLog('userCredential: ${user?.uid}', title: 'user log in');
+    final Map<String, String> header = {"Content-Type": "application/json"};
 
-    // final Map<String, dynamic> userData = await getLoggedInUser();
-    // userData.remove('date_joined');
-    // await localDatabaseController.saveUserDataToLocalDB(userData);
-    // await NotificationMethods.subscribeToTopice(user!.uid);
+    final Map<String, dynamic> body = {
+      "email": email,
+      "password": password,
+    };
+
+    http.Response response = await http.post(
+      Uri.parse(ApiEndpoints.login),
+      headers: header,
+      body: json.encode(body),
+    );
+
+    if (response.statusCode >= 500) {
+      throw 'Unable to connect to server! \nSomething went wrong.';
+    }
+
+    final Map<String, dynamic> responseData = json.decode(response.body);
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      result = UserDetailsModel.fromMap(responseData);
+      loginUser = result;
+    } else {
+      throw responseData['msg'];
+    }
+
+    return result;
   }
 
   Future<Map<String, dynamic>?> registerUserWithEmailAndPassword(
