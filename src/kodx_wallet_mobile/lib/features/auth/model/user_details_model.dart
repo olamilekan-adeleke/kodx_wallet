@@ -86,7 +86,7 @@ class UserDetailsModel {
       username: username ?? this.username,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       profilePicUrl: profilePicUrl ?? this.profilePicUrl,
-      lastLogin: dateJoined ?? this.lastLogin,
+      lastLogin: dateJoined ?? lastLogin,
     );
   }
 

@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../model/user_details_model.dart';
 import '../../../cores/constants/error_text.dart';
 import '../../../cores/utils/emums.dart';
