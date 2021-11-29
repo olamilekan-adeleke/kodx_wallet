@@ -15,7 +15,7 @@ class UserService {
 
     final Map<String, String> header = {
       "Content-Type": "application/json",
-      "Authentication": "Bearer ${authenticationRepo.token}",
+      "Authorization": "Bearer ${authenticationRepo.token}",
     };
 
     http.Response response = await http.get(
@@ -33,7 +33,7 @@ class UserService {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (responseData['status'] == 'success') {
-        result = UserDetailsModel.fromMap(responseData);
+        result = UserDetailsModel.fromMap(responseData['data']);
       } else {
         throw responseData['msg'];
       }

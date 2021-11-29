@@ -26,8 +26,8 @@ class UserDetailsModel {
           : map['bio'] as String,
       profilePicUrl:
           map['image_url'] != null ? map['image_url'] as String : null,
-      lastLogin:
-          map['last_login'] != null ? map['last_login'] as Timestamp : null,
+      // lastLogin:
+      //     map['last_login'] != null ? map['last_login'] as Timestamp : null,
     );
   }
 
