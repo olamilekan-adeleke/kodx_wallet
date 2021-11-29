@@ -10,11 +10,11 @@ Widget homeTabBodyWidget() {
   return Obx(() {
     return IndexedStack(
       index: homeController.tabIndex.value,
-      children: [
-        const HomeScreen(),
-        Container(child: Center(child: Text('transer'))),
-        const TransactionScreen(),
-        Container(child: Center(child: Text('profile'))),
+      children: const [
+        HomeScreen(),
+        Center(child: Text('transfer')),
+        TransactionScreen(),
+        Center(child: Text('profile')),
       ],
     );
   });

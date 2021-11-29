@@ -14,7 +14,7 @@ import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
-  const ForgotPasswordScreen();
+  const ForgotPasswordScreen({Key? key}) : super(key: key);
 
   static final ForgotPasswordController forgotPasswordController =
       Get.find<ForgotPasswordController>();

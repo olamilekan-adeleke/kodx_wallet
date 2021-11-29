@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:kodx_wallet_mobile/cores/components/custom_text_widget.dart';
 import 'package:kodx_wallet_mobile/cores/constants/color.dart';
 import 'package:kodx_wallet_mobile/cores/utils/custom_sizer_utils.dart';

@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         SizedBox(height: sizerSp(20)),
         const HomeWalletWidget(),
         SizedBox(height: sizerSp(20)),
-        Expanded(child: const HomeRecentTransactionsWidget()),
+        const Expanded(child: HomeRecentTransactionsWidget()),
         Container(),
       ],
     );
