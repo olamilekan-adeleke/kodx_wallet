@@ -71,7 +71,7 @@ class SignUpScreen extends StatelessWidget {
           KodTextField(
             hintText: '@kod-x',
             labelText: 'Username',
-            textEditingController: registerController.emailController,
+            textEditingController: registerController.usernameController,
             textInputType: TextInputType.emailAddress,
           ),
           SizedBox(height: sizerSp(10)),

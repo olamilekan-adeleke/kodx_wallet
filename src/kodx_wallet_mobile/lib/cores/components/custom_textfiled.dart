@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kodx_wallet_mobile/cores/components/custom_text_widget.dart';
 import '../../cores/constants/color.dart';
@@ -59,7 +60,7 @@ class _KodTextFieldState extends State<KodTextField> {
             TextFormField(
               maxLines: widget.maxLine,
               cursorColor: kcPrimaryColor,
-              style: GoogleFonts.raleway(),
+              style: GoogleFonts.raleway(fontWeight: FontWeight.w400),
               controller: widget.textEditingController,
               autocorrect: widget.autoCorrect,
               autovalidateMode: widget.validator != null

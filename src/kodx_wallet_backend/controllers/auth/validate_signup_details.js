@@ -1,5 +1,5 @@
 validateSignupDetails = (data) => {
-  const { email, password, fullname, phone } = data;
+  const { email, password, fullname, phone, username } = data;
 
   if (email === undefined || !isEmail(email)) {
     throw {
@@ -19,6 +19,13 @@ validateSignupDetails = (data) => {
     throw {
       code: 400,
       msg: "Fullname Must be min 3 characters!",
+    };
+  }
+
+  if (username === undefined || username.length < 3) {
+    throw {
+      code: 400,
+      msg: "Username Must be min 3 characters!",
     };
   }
 

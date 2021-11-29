@@ -14,15 +14,15 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/instance_manager.dart';
 
 class RegisterController extends GetxController {
-  final Rx<ControllerState> _controllerStateEnum =
-      ControllerState.init.obs;
+  final Rx<ControllerState> _controllerStateEnum = ControllerState.init.obs;
   static final AuthenticationRepo _authenticationRepo =
       Get.find<AuthenticationRepo>();
   final TextEditingController fullNameController =
       TextEditingController(text: '');
   final TextEditingController emailController = TextEditingController(text: '');
   final TextEditingController phoneController = TextEditingController(text: '');
-  final TextEditingController usernameController = TextEditingController(text: '');
+  final TextEditingController usernameController =
+      TextEditingController(text: '');
   final TextEditingController passwordController =
       TextEditingController(text: '');
 
@@ -40,20 +40,47 @@ class RegisterController extends GetxController {
     );
 
     try {
-      await _authenticationRepo.registerUserWithEmailAndPassword(
-          user, passwordController.text.trim());
+      final Map<String, dynamic>? result =
+          await _authenticationRepo.registerUserWithEmailAndPassword(
+        user,
+        passwordController.text.trim(),
+      );
 
-      _controllerStateEnum.value = ControllerState.success;
-      NavigationService.goBack();
-      CustomSnackBarService.showSuccessSnackBar(
-          'Success', 'Account Successfully Created!');
+      if (result == null) {
+        _controllerStateEnum.value = ControllerState.error;
+        CustomSnackBarService.showErrorSnackBar(
+          'Error',
+          'Opps, Something went wrong. Please try again!',
+        );
+        return;
+      }
+
+      if (result['status'] == 'success') {
+        _controllerStateEnum.value = ControllerState.success;
+        // NavigationService.goBack();
+        CustomSnackBarService.showSuccessSnackBar(
+          'Success',
+          'Account Successfully Created!',
+        );
+      } else {
+        _controllerStateEnum.value = ControllerState.error;
+        CustomSnackBarService.showErrorSnackBar('Error', result['msg']);
+        return;
+      }
     } on SocketException {
       _controllerStateEnum.value = ControllerState.error;
       CustomSnackBarService.showErrorSnackBar(
-          'Error', noInternetConnectionText);
+        'Error',
+        noInternetConnectionText,
+      );
+    } on FormatException catch (_) {
+      _controllerStateEnum.value = ControllerState.error;
+      CustomSnackBarService.showErrorSnackBar(
+        'Error',
+        'Unable to format data!, something went wrong',
+      );
     } catch (e, s) {
-      errorLog('$e', 'Error siging up in user', title: 'sign up', trace: '$s');
-
+      errorLog('$e', 'Error signing up in user', title: 'sign up', trace: '$s');
       _controllerStateEnum.value = ControllerState.error;
       CustomSnackBarService.showErrorSnackBar('Error', e.toString());
     }

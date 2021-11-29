@@ -1,15 +1,15 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kodx_wallet_mobile/cores/utils/api.dart';
 import '../../../features/auth/model/user_details_model.dart';
+import 'package:http/http.dart' as http;
 
 class AuthenticationRepo {
   // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final CollectionReference<dynamic> userCollectionRef =
       FirebaseFirestore.instance.collection('users');
 
-  
-
-  
-  
   Future<void> loginUserWithEmailAndPassword(
     String email,
     String password,
@@ -29,34 +29,36 @@ class AuthenticationRepo {
     // await NotificationMethods.subscribeToTopice(user!.uid);
   }
 
-  
-
-  Future<void> registerUserWithEmailAndPassword(
+  Future<Map<String, dynamic>?> registerUserWithEmailAndPassword(
     UserDetailsModel userDetails,
     String password,
   ) async {
-    // final UserCredential userCredential =
-    //     await _firebaseAuth.createUserWithEmailAndPassword(
-    //   email: userDetails.email,
-    //   password: password,
-    // );
+    Map<String, dynamic>? result;
 
-    // final User? user = userCredential.user;
+    final Map<String, String> header = {"Content-Type": "application/json"};
 
-    // if (user == null) throw Exception('Opps, an error occured!');
+    final Map<String, dynamic> body = {
+      ...userDetails.toMap(),
+      "password": password,
+    };
 
-    // userDetails = userDetails.copyWith(uid: user.uid);
+    http.Response response = await http.post(
+      Uri.parse(ApiEndpoints.signUp),
+      headers: header,
+      body: json.encode(body),
+    );
 
-    // // TODO: add phone number check
+    if (response.statusCode >= 500) {
+      throw 'Unable to connect to server! \nSomething went wrong.';
+    }
 
-    // infoLog('userCredential: ${user.uid}', title: 'user sign up');
+    result = json.decode(response.body);
 
-    // await addUserDataToFirestore(userDetails);
-
-    // await NotificationMethods.subscribeToTopice(user.uid);
-
-    // await localDatabaseController
-    //     .saveUserDataToLocalDB(userDetails.toMapForLocalDb());
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return result;
+    } else {
+      throw result!['msg'];
+    }
   }
 
   Future<void> resetPassword(String email) async {
@@ -64,10 +66,5 @@ class AuthenticationRepo {
     // infoLog('user email: $email', title: 'reset password');
   }
 
-  Future<void> signOut() async {
-   
-  }
-
-
-  
+  Future<void> signOut() async {}
 }
