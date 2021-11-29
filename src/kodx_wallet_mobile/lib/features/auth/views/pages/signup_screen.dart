@@ -15,7 +15,7 @@ import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen(Key? key) : super(key: key);
+  const SignUpScreen({Key? key}) : super(key: key);
 
   static final RegisterController registerController =
       Get.find<RegisterController>();

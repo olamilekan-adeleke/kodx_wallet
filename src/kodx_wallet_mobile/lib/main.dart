@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kodx_wallet_mobile/cores/utils/route_name.dart';
 import 'package:kodx_wallet_mobile/features/auth/binding/auth_binding.dart';
 import 'package:kodx_wallet_mobile/pages_list.dart';
 import 'package:sizer/sizer.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(primarySwatch: Colors.blue),
           initialBinding: AuthenticationBinding(),
           getPages: pages(),
-          initialRoute: '/',
+          initialRoute: RouteName.initial,
         );
       },
     );
