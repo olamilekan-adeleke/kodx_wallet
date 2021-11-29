@@ -102,7 +102,7 @@ class CustomButton extends StatelessWidget {
       child = textWidget(
         text ?? 'no text',
         color: textColor ?? white,
-        size: textSize ?? sizerSp(20),
+        size: textSize ?? sizerSp(18),
         fontWeight: textFontWeight ?? FontWeight.w700,
       );
     }

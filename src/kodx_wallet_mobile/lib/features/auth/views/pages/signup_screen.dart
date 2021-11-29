@@ -100,7 +100,7 @@ class SignUpScreen extends StatelessWidget {
             }
 
             return CustomButton(
-              text: 'Sign Up',
+              text: 'Create account',
               onTap: () => registerController.registerUser(),
             );
           }),
@@ -108,18 +108,18 @@ class SignUpScreen extends StatelessWidget {
           GestureDetector(
             onTap: () => NavigationService.goBack(),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 textWidget(
                   'Already have an account? ',
-                  fontWeight: FontWeight.w200,
+                  fontWeight: FontWeight.w400,
                   size: sizerSp(13),
                 ),
                 textWidget(
                   'Login',
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w700,
                   size: sizerSp(13),
-                  color: kcPrimaryColorTwo,
+                  color: kcPrimaryColor,
                 ),
               ],
             ),
