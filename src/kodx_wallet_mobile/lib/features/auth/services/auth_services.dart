@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kodx_wallet_mobile/cores/utils/api.dart';
@@ -6,12 +7,10 @@ import '../../../features/auth/model/user_details_model.dart';
 import 'package:http/http.dart' as http;
 
 class AuthenticationRepo {
-  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final CollectionReference<dynamic> userCollectionRef =
       FirebaseFirestore.instance.collection('users');
-  UserDetailsModel? loginUser;
 
-  Future<UserDetailsModel?> loginUserWithEmailAndPassword(
+  Future<void> loginUserWithEmailAndPassword(
     String email,
     String password,
   ) async {
@@ -37,13 +36,14 @@ class AuthenticationRepo {
     final Map<String, dynamic> responseData = json.decode(response.body);
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      result = UserDetailsModel.fromMap(responseData);
-      loginUser = result;
+      if (responseData['status'] == 'success') {
+        return;
+      } else {
+        throw responseData['msg'];
+      }
     } else {
       throw responseData['msg'];
     }
-
-    return result;
   }
 
   Future<Map<String, dynamic>?> registerUserWithEmailAndPassword(

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/instance_manager.dart';
-import 'package:kodx_wallet_mobile/features/auth/model/user_details_model.dart';
-
+import 'package:kodx_wallet_mobile/cores/utils/navigator_service.dart';
+import 'package:kodx_wallet_mobile/cores/utils/route_name.dart';
 import '../../../cores/constants/error_text.dart';
 import '../../../cores/utils/emums.dart';
 import '../../../cores/utils/logger.dart';
@@ -25,23 +25,14 @@ class LoginControllers extends GetxController {
   Future<void> loginUser() async {
     _controllerStateEnum.value = ControllerState.busy;
     try {
-      final UserDetailsModel? result =
-          await _authenticationRepo.loginUserWithEmailAndPassword(
+      await _authenticationRepo.loginUserWithEmailAndPassword(
         emailController.text.trim(),
         passwordController.text.trim(),
       );
 
-      if (result == null) {
-        _controllerStateEnum.value = ControllerState.error;
-        CustomSnackBarService.showErrorSnackBar(
-          'Error',
-          'Opps, Something went wrong. Please try again!',
-        );
-        return;
-      }
-
       _controllerStateEnum.value = ControllerState.success;
       CustomSnackBarService.showSuccessSnackBar('Success', 'Login Successful!');
+      NavigationService.popAllAndPlace(RouteName.homeTab);
     } on FormatException catch (_) {
       _controllerStateEnum.value = ControllerState.error;
       CustomSnackBarService.showErrorSnackBar(

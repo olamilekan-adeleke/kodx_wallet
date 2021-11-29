@@ -14,9 +14,9 @@ class UserDetailsModel {
     this.lastLogin,
   });
 
-  factory UserDetailsModel.fromMap(Map<String, dynamic>? map) {
+  factory UserDetailsModel.fromMap(Map<String, dynamic> map) {
     return UserDetailsModel(
-      userId: map!['user_id'].toString(),
+      userId: map['user_id'].toString(),
       email: map['email'] as String,
       fullName: map['fullname'] as String,
       username: map['username'] as String,

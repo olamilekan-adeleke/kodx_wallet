@@ -8,13 +8,16 @@ class NavigationService {
     return Get.toNamed(routeName, arguments: argument);
   }
 
-  static Future<dynamic>? navigateRecplace(String routeName,
+  static Future<dynamic>? navigateReplace(String routeName,
           {dynamic argument}) =>
       Get.offNamed(routeName, arguments: argument);
 
   static void goBack() => Get.back();
 
-  static Future<dynamic>? popAllAndPlace(String routeName,
-          {dynamic argument}) =>
-      Get.offAllNamed(routeName, arguments: argument);
+  static Future<dynamic>? popAllAndPlace(
+    String routeName, {
+    dynamic argument,
+  }) {
+    Get.offAllNamed(routeName, arguments: argument);
+  }
 }
