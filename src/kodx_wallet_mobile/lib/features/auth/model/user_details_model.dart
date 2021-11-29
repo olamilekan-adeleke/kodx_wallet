@@ -4,86 +4,69 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserDetailsModel {
   UserDetailsModel({
-    required this.uid,
+    required this.userId,
     required this.email,
     required this.fullName,
     this.bio,
     required this.phoneNumber,
     this.profilePicUrl,
-    this.dateJoined,
+    this.lastLogin,
   });
 
   factory UserDetailsModel.fromMap(Map<String, dynamic>? map) {
     return UserDetailsModel(
-      uid: map!['uid'].toString(),
+      userId: map!['user_id'].toString(),
       email: map['email'] as String,
-      fullName: map['full_name'] as String,
-      phoneNumber: map['phone_number'] as String,
+      fullName: map['fullname'] as String,
+      phoneNumber: map['phone'] as String,
       bio: map['bio'] == null
-          ? 'Hey there am ${map['full_name']}'
+          ? 'Hey there am ${map['fullname']}'
           : map['bio'] as String,
-      profilePicUrl: map['profile_pic_url'] != null
-          ? map['profile_pic_url'] as String
-          : null,
-      dateJoined:
-          map['date_joined'] != null ? map['date_joined'] as Timestamp : null,
+      profilePicUrl:
+          map['image_url'] != null ? map['image_url'] as String : null,
+      lastLogin:
+          map['last_login'] != null ? map['last_login'] as Timestamp : null,
     );
   }
 
   factory UserDetailsModel.fromJson(String source) =>
       UserDetailsModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  final String uid;
+  final String userId;
   final String email;
   final String fullName;
   final String? bio;
   final String phoneNumber;
   final String? profilePicUrl;
-  final Timestamp? dateJoined;
+  final Timestamp? lastLogin;
 
   Map<String, dynamic> toMap() {
-    final List<String> searchKeys = <String>[];
-    String currentKey = '';
-
-    fullName.split('').forEach((element) {
-      currentKey += element.toLowerCase();
-      searchKeys.add(currentKey);
-    });
-
-    currentKey = '';
-
-    fullName.split(' ').toList()[1].split('').forEach((element) {
-      currentKey += element.toLowerCase();
-      searchKeys.add(currentKey);
-    });
-
     return <String, dynamic>{
-      'uid': uid,
+      'user_id': userId,
       'email': email,
-      'full_name': fullName,
+      'fullname': fullName,
       'bio': bio,
-      'phone_number': phoneNumber,
-      'profile_pic_url': profilePicUrl,
-      'date_joined': dateJoined,
-      'search_key': searchKeys,
+      'phone': phoneNumber,
+      'image_url': profilePicUrl,
+      'last_login': lastLogin,
     };
   }
 
   Map<String, dynamic> toMapForLocalDb() {
     return <String, dynamic>{
-      'uid': uid,
+      'user_id': userId,
       'email': email,
-      'full_name': fullName,
+      'fullname': fullName,
       'bio': bio,
-      'phone_number': phoneNumber,
-      'profile_pic_url': profilePicUrl,
+      'phone': phoneNumber,
+      'image_url': profilePicUrl,
     };
   }
 
   String toJson() => json.encode(toMap());
 
   UserDetailsModel copyWith({
-    String? uid,
+    String? userId,
     String? email,
     String? fullName,
     String? phoneNumber,
@@ -91,18 +74,18 @@ class UserDetailsModel {
     Timestamp? dateJoined,
   }) {
     return UserDetailsModel(
-      uid: uid ?? this.uid,
+      userId: userId ?? this.userId,
       email: email ?? this.email,
       fullName: fullName ?? this.fullName,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       profilePicUrl: profilePicUrl ?? this.profilePicUrl,
-      dateJoined: dateJoined ?? this.dateJoined,
+      lastLogin: dateJoined ?? this.lastLogin,
     );
   }
 
   @override
   String toString() {
     return 'UserDetailsModel(email: $email, fullName: $fullName, phoneNumber:'
-        ' $phoneNumber, profilePicUrl: $profilePicUrl, dateJoined: $dateJoined)';
+        ' $phoneNumber, profilePicUrl: $profilePicUrl, dateJoined: $lastLogin)';
   }
 }

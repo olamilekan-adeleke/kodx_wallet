@@ -32,11 +32,10 @@ class RegisterController extends GetxController {
     _controllerStateEnum.value = ControllerState.busy;
 
     final UserDetailsModel user = UserDetailsModel(
-      uid: '',
+      userId: '',
       email: emailController.text.trim(),
       fullName: fullNameController.text.trim(),
       phoneNumber: phoneController.text.trim(),
-      dateJoined: Timestamp.now(),
       profilePicUrl: null,
     );
 
