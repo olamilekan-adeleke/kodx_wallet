@@ -9,6 +9,7 @@ class KodTextField extends StatefulWidget {
     this.textEditingController,
     this.autoCorrect = true,
     required this.hintText,
+    this.labelText = '',
     this.validator,
     this.textInputType = TextInputType.text,
     this.isPassword = false,
@@ -19,7 +20,7 @@ class KodTextField extends StatefulWidget {
   final TextEditingController? textEditingController;
   final bool autoCorrect;
   final String hintText;
-
+  final String labelText;
   final String? Function(String?)? validator;
   final TextInputType textInputType;
   final bool isPassword;
@@ -52,19 +53,24 @@ class _KodTextFieldState extends State<KodTextField> {
             fillColor: Colors.grey.shade100,
             border: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(5.0)),
+              borderRadius: BorderRadius.circular(sizerSp(8.0)),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(5.0)),
+              borderRadius: BorderRadius.circular(sizerSp(8.0)),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(5.0)),
+              borderRadius: BorderRadius.circular(sizerSp(8.0)),
             ),
             disabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(sizerSp(5.0)),
+              borderRadius: BorderRadius.circular(sizerSp(8.0)),
+            ),
+            labelText: widget.labelText,
+            labelStyle: const TextStyle(
+              color: kcTextColor,
+              fontWeight: FontWeight.w800,
             ),
             hintText: widget.hintText,
             hintStyle: TextStyle(

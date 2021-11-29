@@ -26,60 +26,45 @@ class SignUpScreen extends StatelessWidget {
       body: ListView(
         shrinkWrap: true,
         children: <Widget>[
+          SizedBox(height: sizerSp(10)),
+          GestureDetector(
+            onTap: () => NavigationService.goBack(),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                height: sizerSp(35),
+                width: sizerSp(35),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: kcPrimaryColor.withOpacity(0.1),
+                ),
+                child: Icon(
+                  Icons.arrow_back,
+                  size: sizerSp(16),
+                  color: kcPrimaryColor,
+                ),
+              ),
+            ),
+          ),
           SizedBox(height: sizerSp(20)),
           textWidget(
-            'Create \nNew Account',
+            'Create \nAccount',
             fontWeight: FontWeight.w700,
             size: sizerSp(30),
           ),
-          GestureDetector(
-            onTap: () => NavigationService.goBack(),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                textWidget(
-                  'Already have an account? ',
-                  fontWeight: FontWeight.w200,
-                  size: sizerSp(13),
-                ),
-                textWidget(
-                  'Login',
-                  fontWeight: FontWeight.w400,
-                  size: sizerSp(13),
-                  color: kcPrimaryColorTwo,
-                ),
-              ],
-            ),
+          SizedBox(height: sizerSp(30)),
+          KodTextField(
+            hintText: 'First Name',
+            textEditingController: registerController.firstNameController,
+            validator: (String? value) =>
+                formFieldValidator(value, 'First Name', 3),
           ),
-          SizedBox(height: sizerSp(20)),
-          Center(
-            child: SvgPicture.asset(
-              'assets/images/signup.svg',
-              height: sizerSp(100),
-              width: sizerSp(150),
-            ),
-          ),
-          SizedBox(height: sizerSp(40)),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: KodTextField(
-                  hintText: 'First Name',
-                  textEditingController: registerController.firstNameController,
-                  validator: (String? value) =>
-                      formFieldValidator(value, 'First Name', 3),
-                ),
-              ),
-              SizedBox(width: sizerSp(3)),
-              Expanded(
-                child: KodTextField(
-                  hintText: 'Last Name',
-                  textEditingController: registerController.lastNameController,
-                  validator: (String? value) =>
-                      formFieldValidator(value, 'Last Name', 3),
-                ),
-              ),
-            ],
+          SizedBox(height: sizerSp(10)),
+          KodTextField(
+            hintText: 'Last Name',
+            textEditingController: registerController.lastNameController,
+            validator: (String? value) =>
+                formFieldValidator(value, 'Last Name', 3),
           ),
           SizedBox(height: sizerSp(10)),
           KodTextField(
@@ -116,6 +101,25 @@ class SignUpScreen extends StatelessWidget {
             );
           }),
           SizedBox(height: sizerSp(20)),
+          GestureDetector(
+            onTap: () => NavigationService.goBack(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                textWidget(
+                  'Already have an account? ',
+                  fontWeight: FontWeight.w200,
+                  size: sizerSp(13),
+                ),
+                textWidget(
+                  'Login',
+                  fontWeight: FontWeight.w400,
+                  size: sizerSp(13),
+                  color: kcPrimaryColorTwo,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
