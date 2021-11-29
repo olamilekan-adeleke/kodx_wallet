@@ -22,39 +22,30 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: textWidget('', fontWeight: FontWeight.w700),
-        centerTitle: true,
-        elevation: 0.0,
-        leading: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: sizerSp(5.0),
-            vertical: sizerSp(5.0),
-          ),
-          padding: EdgeInsets.only(right: sizerSp(3.0)),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: kcTextColor.withOpacity(0.6),
-              width: sizerSp(1.0),
-            ),
-            borderRadius: BorderRadius.circular(sizerSp(5.0)),
-          ),
-          child: GestureDetector(
-            child: const Center(
-              child: Icon(
-                Icons.arrow_back_ios_new,
-                color: kcTextColor,
-              ),
-            ),
-            onTap: () => NavigationService.goBack(),
-          ),
-        ),
-      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            SizedBox(height: sizerSp(20)),
+            GestureDetector(
+              onTap: () => NavigationService.goBack(),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  height: sizerSp(35),
+                  width: sizerSp(35),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: kcPrimaryColor.withOpacity(0.1),
+                  ),
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: sizerSp(16),
+                    color: kcPrimaryColor,
+                  ),
+                ),
+              ),
+            ),
             SizedBox(height: sizerSp(20)),
             textWidget(
               'Reset Password',
@@ -64,10 +55,10 @@ class ForgotPasswordScreen extends StatelessWidget {
             textWidget(
               'Did You Forgot Your Password?\nEnter Your Email Below,'
               ' A Link Will Be Sent To That Email',
-              fontWeight: FontWeight.w200,
+              fontWeight: FontWeight.w400,
               size: sizerSp(12),
             ),
-            SizedBox(height: sizerSp(20)),
+            SizedBox(height: sizerSp(60)),
             Center(
               child: SvgPicture.asset(
                 'assets/images/forgot_password.svg',
@@ -75,9 +66,10 @@ class ForgotPasswordScreen extends StatelessWidget {
                 width: sizerSp(150),
               ),
             ),
-            SizedBox(height: sizerSp(20)),
+            SizedBox(height: sizerSp(30)),
             KodTextField(
-              hintText: 'Email',
+              hintText: 'john.smith@gmail.com',
+              labelText: 'Email',
               textEditingController: forgotPasswordController.emailController,
               textInputType: TextInputType.emailAddress,
             ),
