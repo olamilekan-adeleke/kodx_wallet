@@ -5,7 +5,7 @@ Widget scaffold({
   required Widget body,
   appBar,
   usePadding = true,
-  BottomNavigationBar? bottomNavigationBar,
+  Widget? bottomNavigationBar,
 }) {
   return SafeArea(
     child: Scaffold(
